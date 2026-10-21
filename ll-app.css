@@ -1,0 +1,223 @@
+/* ==========================================================================
+   LifeLink app shell: design tokens, dark theme, and mobile "app" layout.
+   Purely presentational. Loaded after Tailwind; does not touch any logic.
+   ========================================================================== */
+
+:root {
+  --ll-primary: #07865F;
+  --ll-primary-hover: #066e4e;
+  --ll-primary-soft: #E3F4EC;
+  --ll-bg: #F5F8F6;
+  --ll-surface: #FFFFFF;
+  --ll-surface-2: #EEF3F0;
+  --ll-text: #18332A;
+  --ll-text-2: #66756E;
+  --ll-border: #E1E8E3;
+  --ll-shadow: 0 1px 2px rgba(24, 51, 42, .06), 0 8px 24px rgba(24, 51, 42, .06);
+  --ll-radius: 18px;
+  --ll-tab-h: 64px;
+  --ll-safe-b: env(safe-area-inset-bottom, 0px);
+  --ll-safe-t: env(safe-area-inset-top, 0px);
+}
+html[data-theme="dark"] {
+  --ll-primary: #18B785;
+  --ll-primary-hover: #2fd09c;
+  --ll-primary-soft: rgba(24, 183, 133, .16);
+  --ll-bg: #101A18;
+  --ll-surface: #192723;
+  --ll-surface-2: #22332D;
+  --ll-text: #F0F7F3;
+  --ll-text-2: #A5B9AE;
+  --ll-border: #30463D;
+  --ll-shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 10px 28px rgba(0, 0, 0, .28);
+}
+
+html { -webkit-tap-highlight-color: transparent; }
+body { background-color: var(--ll-bg) !important; color: var(--ll-text); -webkit-font-smoothing: antialiased; }
+body, .bg-white, .bg-slate-50, .bg-slate-100, header, aside { transition: background-color .2s ease, border-color .2s ease, color .2s ease; }
+:focus-visible { outline: 2px solid var(--ll-primary); outline-offset: 2px; }
+
+/* brand green aligned with the palette */
+.bg-emerald-600 { background-color: var(--ll-primary) !important; }
+.hover\:bg-emerald-700:hover { background-color: var(--ll-primary-hover) !important; }
+.field:focus { border-color: var(--ll-primary) !important; }
+
+/* ------------------------------ DARK THEME ------------------------------ */
+html[data-theme="dark"] .bg-white { background-color: var(--ll-surface) !important; }
+html[data-theme="dark"] .bg-white\/95 { background-color: rgba(25, 39, 35, .92) !important; }
+html[data-theme="dark"] .bg-slate-50 { background-color: var(--ll-bg) !important; }
+html[data-theme="dark"] .bg-slate-100 { background-color: var(--ll-surface-2) !important; }
+html[data-theme="dark"] .bg-slate-900 { background-color: #2A3F37 !important; }
+html[data-theme="dark"] .hover\:bg-slate-50:hover,
+html[data-theme="dark"] .hover\:bg-slate-100:hover { background-color: var(--ll-surface-2) !important; }
+html[data-theme="dark"] .hover\:bg-slate-800:hover { background-color: #34503f !important; }
+
+html[data-theme="dark"] .text-slate-900, html[data-theme="dark"] .text-slate-800 { color: var(--ll-text) !important; }
+html[data-theme="dark"] .text-slate-700 { color: #D5E3DB !important; }
+html[data-theme="dark"] .text-slate-600 { color: #BCCEC4 !important; }
+html[data-theme="dark"] .text-slate-500 { color: var(--ll-text-2) !important; }
+html[data-theme="dark"] .text-slate-400 { color: #8AA095 !important; }
+html[data-theme="dark"] .placeholder-slate-400::placeholder, html[data-theme="dark"] ::placeholder { color: #7f9489 !important; }
+
+html[data-theme="dark"] .border-slate-100, html[data-theme="dark"] .border-slate-200,
+html[data-theme="dark"] .border-slate-300, html[data-theme="dark"] .border-slate-200\/80,
+html[data-theme="dark"] .divide-slate-100 > * + *, html[data-theme="dark"] .divide-slate-200 > * + * { border-color: var(--ll-border) !important; }
+
+html[data-theme="dark"] .bg-emerald-50 { background-color: var(--ll-primary-soft) !important; }
+html[data-theme="dark"] .bg-emerald-50\/40 { background-color: rgba(24, 183, 133, .08) !important; }
+html[data-theme="dark"] .bg-emerald-100 { background-color: rgba(24, 183, 133, .24) !important; }
+html[data-theme="dark"] .text-emerald-600, html[data-theme="dark"] .text-emerald-700,
+html[data-theme="dark"] .text-emerald-800, html[data-theme="dark"] .text-emerald-900,
+html[data-theme="dark"] .hover\:text-emerald-600:hover, html[data-theme="dark"] .hover\:text-emerald-700:hover { color: #4fe0b0 !important; }
+html[data-theme="dark"] .border-emerald-200 { border-color: rgba(24, 183, 133, .38) !important; }
+html[data-theme="dark"] .hover\:bg-emerald-50:hover { background-color: var(--ll-primary-soft) !important; }
+
+html[data-theme="dark"] .bg-amber-50 { background-color: rgba(245, 158, 11, .13) !important; }
+html[data-theme="dark"] .border-amber-200 { border-color: rgba(245, 158, 11, .38) !important; }
+html[data-theme="dark"] .text-amber-700, html[data-theme="dark"] .text-amber-800, html[data-theme="dark"] .text-amber-900 { color: #fcd34d !important; }
+html[data-theme="dark"] .bg-rose-50 { background-color: rgba(244, 63, 94, .13) !important; }
+html[data-theme="dark"] .border-rose-200 { border-color: rgba(244, 63, 94, .38) !important; }
+html[data-theme="dark"] .text-rose-600, html[data-theme="dark"] .text-rose-700, html[data-theme="dark"] .text-rose-800 { color: #fda4af !important; }
+html[data-theme="dark"] .bg-blue-50 { background-color: rgba(59, 130, 246, .14) !important; }
+html[data-theme="dark"] .border-blue-200 { border-color: rgba(59, 130, 246, .38) !important; }
+html[data-theme="dark"] .text-blue-700 { color: #93c5fd !important; }
+
+html[data-theme="dark"] .field, html[data-theme="dark"] input:not([type=checkbox]):not([type=radio]):not([type=range]),
+html[data-theme="dark"] select, html[data-theme="dark"] textarea {
+  background-color: var(--ll-surface-2) !important; color: var(--ll-text) !important; border-color: var(--ll-border) !important;
+}
+html[data-theme="dark"] .field:focus { background-color: var(--ll-surface) !important; }
+html[data-theme="dark"] .lbl { color: #BCCEC4 !important; }
+html[data-theme="dark"] .nav-item-active { background-color: var(--ll-primary-soft) !important; color: #4fe0b0 !important; }
+html[data-theme="dark"] img[src$="lifelink-logo.png"] { background: #F0F7F3; border-radius: 12px; padding: 3px 6px; }
+html[data-theme="dark"] .shadow-xs, html[data-theme="dark"] .shadow-sm { box-shadow: 0 1px 2px rgba(0, 0, 0, .35) !important; }
+/* dialogs created by LL.confirm / LL.notePrompt */
+html[data-theme="dark"] [role="dialog"] { background-color: var(--ll-surface) !important; }
+/* map canvases keep their own (light) tiles so streets and labels stay legible */
+
+/* theme control (desktop floating button) */
+.ll-theme-fab {
+  position: fixed; right: 16px; bottom: 16px; z-index: 60; width: 42px; height: 42px; border-radius: 14px;
+  display: none; align-items: center; justify-content: center; cursor: pointer;
+  background: var(--ll-surface); color: var(--ll-text); border: 1px solid var(--ll-border); box-shadow: var(--ll-shadow);
+}
+.ll-theme-fab:hover { color: var(--ll-primary); }
+@media (min-width: 768px) { .ll-theme-fab { display: flex; } }
+
+/* segmented theme selector (inside the More sheet) */
+.ll-seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 4px; background: var(--ll-surface-2); border-radius: 14px; }
+.ll-seg button { min-height: 40px; border-radius: 10px; font-weight: 800; font-size: 13px; color: var(--ll-text-2); border: 0; background: transparent; cursor: pointer; }
+.ll-seg button[aria-pressed="true"] { background: var(--ll-surface); color: var(--ll-primary); box-shadow: 0 1px 3px rgba(0, 0, 0, .15); }
+
+/* ------------------------------ APP SHELL (phones) ------------------------------ */
+.ll-tabbar { display: none; }
+.ll-sheet-wrap { display: none; }
+
+@media (max-width: 767.98px) {
+  body { overscroll-behavior-y: none; }
+  body.ll-has-tabbar { padding-bottom: calc(var(--ll-tab-h) + var(--ll-safe-b) + 8px); }
+
+  /* sticky top bars respect the notch and feel like an app bar */
+  header.sticky, header[class*="sticky"] { padding-top: var(--ll-safe-t); backdrop-filter: saturate(1.4) blur(10px); }
+  main { scroll-margin-top: 72px; }
+
+  /* comfortable touch targets; 16px inputs stop iOS from zooming on focus */
+  button, a[class*="rounded-"], [role="button"], select { min-height: 40px; }
+  input, select, textarea, .field { font-size: 16px !important; }
+  .field, input:not([type=checkbox]):not([type=radio]), select { min-height: 48px; }
+
+  /* cards feel like app surfaces */
+  main .rounded-3xl, main .rounded-2xl { border-radius: var(--ll-radius); }
+  .shadow-xl, .shadow-2xl { box-shadow: var(--ll-shadow) !important; }
+
+  /* section chips under the header (dashboards) become an app-style scroller */
+  #mobileNav { position: sticky; top: calc(56px + var(--ll-safe-t)); z-index: 9; scrollbar-width: none; padding-top: 10px; padding-bottom: 10px; }
+  #mobileNav::-webkit-scrollbar { display: none; }
+  #mobileNav a { white-space: nowrap; border-radius: 999px; min-height: 36px; }
+
+  /* tables scroll inside their card rather than the page */
+  main table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  /* dialogs (LL.confirm / LL.notePrompt) become bottom sheets */
+  body > div[style*="z-index:99998"] { align-items: flex-end !important; padding: 0 !important; }
+  body > div[style*="z-index:99998"] > [role="dialog"] {
+    max-width: none !important; width: 100% !important; border-radius: 24px 24px 0 0 !important;
+    padding-bottom: calc(24px + var(--ll-safe-b)) !important; animation: llSheetUp .26s cubic-bezier(.2, .8, .2, 1);
+  }
+  body > div[style*="z-index:99998"] > [role="dialog"]::before {
+    content: ""; display: block; width: 40px; height: 4px; border-radius: 4px; background: var(--ll-border); margin: -8px auto 14px;
+  }
+  /* toast above the tab bar */
+  body.ll-has-tabbar [style*="bottom:28px"] { bottom: calc(var(--ll-tab-h) + var(--ll-safe-b) + 16px) !important; }
+
+  /* ---- bottom tab bar ---- */
+  .ll-tabbar {
+    display: grid; position: fixed; left: 0; right: 0; bottom: 0; z-index: 70;
+    grid-template-columns: repeat(5, 1fr); align-items: stretch;
+    height: calc(var(--ll-tab-h) + var(--ll-safe-b)); padding-bottom: var(--ll-safe-b);
+    background: color-mix(in srgb, var(--ll-surface) 94%, transparent); backdrop-filter: saturate(1.4) blur(14px);
+    border-top: 1px solid var(--ll-border); box-shadow: 0 -6px 24px rgba(0, 0, 0, .05);
+  }
+  .ll-tabbar.cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .ll-tab {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; position: relative;
+    color: var(--ll-text-2); font: 700 10.5px/1 "Plus Jakarta Sans", system-ui, sans-serif; text-decoration: none;
+    background: none; border: 0; cursor: pointer; min-height: var(--ll-tab-h); transition: color .15s ease;
+  }
+  .ll-tab svg { width: 24px; height: 24px; transition: transform .18s ease; }
+  .ll-tab:active svg { transform: scale(.88); }
+  .ll-tab[aria-current="page"] { color: var(--ll-primary); }
+  .ll-tab[aria-current="page"]::before {
+    content: ""; position: absolute; top: 0; width: 28px; height: 3px; border-radius: 0 0 4px 4px; background: var(--ll-primary);
+  }
+  .ll-tab-cta span.ll-cta {
+    display: flex; align-items: center; justify-content: center; width: 52px; height: 52px; margin-top: -22px; border-radius: 18px;
+    background: var(--ll-primary); color: #fff; box-shadow: 0 8px 20px rgba(7, 134, 95, .4);
+  }
+  .ll-tab-cta { color: var(--ll-text-2); }
+  .ll-tab-cta svg { width: 26px; height: 26px; }
+  .ll-tab-cta em { font-style: normal; margin-top: 1px; }
+
+  /* ---- "More" bottom sheet ---- */
+  .ll-sheet-wrap { position: fixed; inset: 0; z-index: 90; display: none; }
+  .ll-sheet-wrap.open { display: block; }
+  .ll-scrim { position: absolute; inset: 0; background: rgba(8, 20, 16, .5); animation: llFade .2s ease; }
+  .ll-sheet {
+    position: absolute; left: 0; right: 0; bottom: 0; max-height: 86vh; overflow-y: auto; background: var(--ll-surface); color: var(--ll-text);
+    border-radius: 26px 26px 0 0; padding: 10px 18px calc(22px + var(--ll-safe-b)); animation: llSheetUp .28s cubic-bezier(.2, .8, .2, 1);
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  }
+  .ll-grabber { width: 42px; height: 4px; border-radius: 4px; background: var(--ll-border); margin: 0 auto 14px; }
+}
+@keyframes llSheetUp { from { transform: translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes llFade { from { opacity: 0; } to { opacity: 1; } }
+
+/* sheet content (shared) */
+.ll-sheet h3 { font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--ll-text-2); margin: 14px 4px 8px; }
+.ll-sheet-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.ll-sheet-link {
+  display: flex; align-items: center; gap: 12px; padding: 13px 14px; border-radius: 16px; background: var(--ll-surface-2); color: var(--ll-text);
+  font-weight: 800; font-size: 14px; text-decoration: none; min-height: 52px; border: 0; cursor: pointer; text-align: left; width: 100%;
+}
+.ll-sheet-link svg { width: 22px; height: 22px; flex: none; color: var(--ll-primary); }
+.ll-sheet-link.danger { color: #e11d48; margin-top: 12px; }
+.ll-sheet-link.danger svg { color: #e11d48; }
+
+/* pages that need the full screen (live map) keep their own layout */
+body[data-ll-page="tracking"] .ll-tabbar, body[data-ll-page="signin"] .ll-tabbar, body[data-ll-page="admin"] .ll-tabbar { display: none !important; }
+body[data-ll-page="tracking"], body[data-ll-page="signin"], body[data-ll-page="admin"] { padding-bottom: 0 !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ll-sheet, .ll-scrim, [role="dialog"] { animation: none !important; }
+  .ll-tab svg, body, .bg-white { transition: none !important; }
+}
+
+/* ---- surfaces that are deliberately light in both themes (homepage hero search + category tiles) ---- */
+html[data-theme="dark"] .hero-search input:not([type=checkbox]):not([type=radio]):not([type=range]), html[data-theme="dark"] .hero-search select {
+  background-color: transparent !important; color: #0f172a !important; border-color: transparent !important; min-height: 0 !important;
+}
+html[data-theme="dark"] .hero-search input::placeholder { color: #64748b !important; }
+html[data-theme="dark"] .hero-search .text-slate-800, html[data-theme="dark"] .hero-search .text-slate-900 { color: #0f172a !important; }
+html[data-theme="dark"] .hero-service-card .text-slate-900, html[data-theme="dark"] .hero-service-card { color: #0f172a !important; }
+html[data-theme="dark"] .hero-service-card .text-slate-500 { color: #64748b !important; }
+html[data-theme="dark"] .hero-search-divider { border-color: transparent !important; }
